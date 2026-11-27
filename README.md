@@ -1,6 +1,6 @@
 # RAG Evaluation Harness (with adaptive reranking + Corrective-RAG)
 
-Maintainer: [Asma Mestaysser](https://github.com/asmamest)
+BY : [Asma Mestaysser](https://github.com/asmamest)
 
 A reusable **RAG evaluation harness with a CI regression gate**, an agentic
 **Corrective-RAG (CRAG)** pipeline built on **LangGraph**, adaptive cross-encoder
