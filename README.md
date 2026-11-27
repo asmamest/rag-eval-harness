@@ -168,6 +168,22 @@ uvicorn app.main:app --reload          # API at /docs
 streamlit run app/ui.py                # interactive UI with the CRAG trace
 ```
 
+## Deploy the API
+
+The API includes local SentenceTransformers/PyTorch inference and FAISS, which
+exceed typical serverless function bundle limits. Deploy it to a Docker-capable
+host rather than a serverless function platform:
+
+```bash
+docker build -t rag-eval-harness .
+docker run --rm -p 8000:8000 rag-eval-harness
+```
+
+The container builds its FAISS/BM25 index on startup and downloads the embedding
+model if it is not cached. The API is then available at `http://localhost:8000`
+and its interactive docs at `/docs`. Set `ANTHROPIC_API_KEY` on the container
+only if you need answer generation or the tool agent.
+
 ## Models
 
 - **Embeddings:** `sentence-transformers/all-MiniLM-L6-v2`.

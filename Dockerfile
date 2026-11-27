@@ -5,10 +5,10 @@ WORKDIR /app
 ENV PIP_NO_CACHE_DIR=1 HF_HOME=/app/.hf_cache
 
 COPY requirements.txt ./
-RUN pip install -r requirements.txt && pip install fastapi "uvicorn[standard]"
+RUN pip install --no-cache-dir --default-timeout=1000 --retries=10 -r requirements.txt \
+    && pip install --no-cache-dir --default-timeout=1000 --retries=10 "uvicorn[standard]"
 
-COPY rag/ rag/
-COPY eval/ eval/
+COPY rag_eval/ rag_eval/
 COPY scripts/ scripts/
 COPY app/ app/
 COPY data/raw/ data/raw/
